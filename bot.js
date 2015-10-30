@@ -213,7 +213,7 @@ api.on('message', function(message)
             console.log(err);
             console.log(msg);
 
-            for (var i = 0; i < Sessions.get_files(message.chat.id).length; i++)
+            for (var i = 0; i < Sessions.get_files(message.chat.id).length-1; i++)
             {
                 if(Sessions.get_is_photo(message.chat.id)[i])
                 {
@@ -225,35 +225,6 @@ api.on('message', function(message)
                     {
                         console.log(err);
                         console.log(util.inspect(data, false, null));
-
-                        j=parseInt(i);
-                        j++;
-                        if((j<Sessions.get_files(message.chat.id).length)?false:true)                        
-                        {
-                            Sessions.remove(message.chat.id);
-                            Sessions.add(message.chat.id);
-                            
-                            api.sendMessage({
-                                chat_id: message.chat.id,
-                                text: texts.ui_success
-                            }, function(next_err, msg)
-                            {
-                                console.log(next_err);
-                                console.log(msg);
-                    
-                                api.sendMessage({
-                                    chat_id: message.chat.id,
-                                    text: texts.ui_choose_from_main_menu,
-                                    reply_markup: JSON.stringify(keyboards.main_menu)
-                                }, function(final_err, final_msg)
-                                {
-                                    console.log(final_err);
-                                    console.log(final_msg);
-                    
-                                    Sessions.set_step(message.chat.id, 0);
-                                });
-                            });
-                        }
                     });
                 }
                 else
@@ -266,38 +237,84 @@ api.on('message', function(message)
                     {
                         console.log(err);
                         console.log(util.inspect(data, false, null));
-
-                        j=parseInt(i);
-                        j++;
-                        if((j<Sessions.get_files(message.chat.id).length)?false:true)
-                        {
-                            Sessions.remove(message.chat.id);
-                            Sessions.add(message.chat.id);
-                            
-                            api.sendMessage({
-                                chat_id: message.chat.id,
-                                text: texts.ui_success
-                            }, function(next_err, msg)
-                            {
-                                console.log(next_err);
-                                console.log(msg);
-                    
-                                api.sendMessage({
-                                    chat_id: message.chat.id,
-                                    text: texts.ui_choose_from_main_menu,
-                                    reply_markup: JSON.stringify(keyboards.main_menu)
-                                }, function(final_err, final_msg)
-                                {
-                                    console.log(final_err);
-                                    console.log(final_msg);
-                    
-                                    Sessions.set_step(message.chat.id, 0);
-                                });
-                            });
-                        }
                     });
                 }
             }
+            
+            if(Sessions.get_is_photo(message.chat.id)[Sessions.get_files(message.chat.id).length-1])
+            {
+                api.sendPhoto({
+                    chat_id: teacher,
+                    photo: Sessions.get_files(message.chat.id)[Sessions.get_files(message.chat.id).length-1].toString(),
+                    reply_to_message_id: msg.message_id
+                }, function(err, data)
+                {
+                    console.log(err);
+                    console.log(util.inspect(data, false, null));
+
+                    Sessions.remove(message.chat.id);
+                    Sessions.add(message.chat.id);
+                    
+                    api.sendMessage({
+                        chat_id: message.chat.id,
+                        text: texts.ui_success
+                    }, function(next_err, msg)
+                    {
+                        console.log(next_err);
+                        console.log(msg);
+            
+                        api.sendMessage({
+                            chat_id: message.chat.id,
+                            text: texts.ui_choose_from_main_menu,
+                            reply_markup: JSON.stringify(keyboards.main_menu)
+                        }, function(final_err, final_msg)
+                        {
+                            console.log(final_err);
+                            console.log(final_msg);
+            
+                            Sessions.set_step(message.chat.id, 0);
+                        });
+                    });
+                
+                });
+            }
+            else
+            {
+                api.sendDocument({
+                    chat_id: teacher,
+                    document: Sessions.get_files(message.chat.id)[Sessions.get_files(message.chat.id).length-1].toString(),
+                    reply_to_message_id:msg.message_id
+                }, function(err, data)
+                {
+                    console.log(err);
+                    console.log(util.inspect(data, false, null));
+                    
+                    Sessions.remove(message.chat.id);
+                    Sessions.add(message.chat.id);
+                    
+                    api.sendMessage({
+                        chat_id: message.chat.id,
+                        text: texts.ui_success
+                    }, function(next_err, msg)
+                    {
+                        console.log(next_err);
+                        console.log(msg);
+            
+                        api.sendMessage({
+                            chat_id: message.chat.id,
+                            text: texts.ui_choose_from_main_menu,
+                            reply_markup: JSON.stringify(keyboards.main_menu)
+                        }, function(final_err, final_msg)
+                        {
+                            console.log(final_err);
+                            console.log(final_msg);
+            
+                            Sessions.set_step(message.chat.id, 0);
+                        });
+                    });
+                
+                });
+            }                
         });
     }
 
