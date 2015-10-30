@@ -15,7 +15,7 @@ console.log = function(d) {
 };
 /* end */
 
-var teacher = sensitive.admin;
+var teacher = sensitive.teacher;
 
 var api = new telegram(
     {
