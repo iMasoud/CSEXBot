@@ -21,9 +21,16 @@ functions =
             lesson: ""
         };
 
-        if(id === sensitive.teacher)
+        if(id == sensitive.teacher)
         {
-            Sessions[id].news = "";
+            Sessions[id].news = " ";
+        }
+        else
+        {
+            Sessions[id].SDS = true;
+            Sessions[id].SAD = true;
+            Sessions[id].SAI = true;
+            Sessions[id].SCA = true;
         }
 
         Sessions[id].files = new Array;
@@ -172,7 +179,7 @@ functions =
 
     set_news : function(id, news)
     {
-        if(id === sensitive.teacher)
+        if(id == sensitive.teacher)
         {
             Sessions[id].news = news;
             return true;
@@ -185,7 +192,7 @@ functions =
 
     get_news : function(id)
     {
-        if(id === sensitive.teacher)
+        if(id == sensitive.teacher)
         {
             return Sessions[id].news;
         }
@@ -193,7 +200,173 @@ functions =
         {
             return false;
         }
-    }
+    },
+
+    set_SDS : function(id, sds)
+    {
+        if(id != sensitive.teacher)
+        {
+            Sessions[id].SDS = sds;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
+    get_SDS : function(id)
+    {
+        if(id != sensitive.teacher)
+        {
+            return Sessions[id].SDS;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
+    set_SAD : function(id, sad)
+    {
+        if(id != sensitive.teacher)
+        {
+            Sessions[id].SAD = sad;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
+    get_SAD : function(id)
+    {
+        if(id != sensitive.teacher)
+        {
+            return Sessions[id].SAD;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
+    set_SAI : function(id, sai)
+    {
+        if(id != sensitive.teacher)
+        {
+            Sessions[id].SAI = sai;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
+    get_SAI : function(id)
+    {
+        if(id != sensitive.teacher)
+        {
+            return Sessions[id].SAI;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
+    set_SCA : function(id, sca)
+    {
+        if(id != sensitive.teacher)
+        {
+            Sessions[id].SCA = sca;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
+    get_SCA : function(id)
+    {
+        if(id != sensitive.teacher)
+        {
+            return Sessions[id].SCA;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
+    get_active : function(id)
+    {
+        if(id != sensitive.teacher)
+        {
+            the_output = '';
+            if (functions.get_SDS(id) === true)
+            {
+                the_output = the_output + '\n' + 'ساختمان داده';
+            }
+            if (functions.get_SAD(id) === true)
+            {
+                the_output = the_output + '\n' + 'طراحی الگوریتم';
+            }
+            if (functions.get_SAI(id) === true)
+            {
+                the_output = the_output + '\n' + 'هوش مصنوعی';
+            }
+            if (functions.get_SCA(id) === true)
+            {
+                the_output = the_output + '\n' + 'معماری کامپیوتر';
+            }
+            if(the_output==='')
+            {
+                the_output = '(در حال حاضر هیچ درسی برای شما فعال نیست)'
+            }
+            return the_output;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
+    get_deactive : function(id)
+    {
+        if(id != sensitive.teacher)
+        {
+            the_output = '';
+            if (functions.get_SDS(id) === false)
+            {
+                the_output = the_output + '\n' + 'ساختمان داده';
+            }
+            if (functions.get_SAD(id) === false)
+            {
+                the_output = the_output + '\n' + 'طراحی الگوریتم';
+            }
+            if (functions.get_SAI(id) === false)
+            {
+                the_output = the_output + '\n' + 'هوش مصنوعی';
+            }
+            if (functions.get_SCA(id) === false)
+            {
+                the_output = the_output + '\n' + 'معماری کامپیوتر';
+            }
+            if(the_output==='')
+            {
+                the_output = '(در حال حاضر همه دروس برای شما فعال هستند)'
+            }
+            return the_output;
+        }
+        else
+        {
+            return false;
+        }
+    },
 }
 
 module.exports = functions;

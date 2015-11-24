@@ -1,6 +1,6 @@
 {
   "name": "CSEXBot",
-  "version": "0.9.0",
+  "version": "1.9.0",
   "description": "CSEXBot is a telegram bot that delivers photos and documents to an specific chat id. Students use this bot to send their exercies to their teacher.",
   "main": "bot.js",
   "dependencies": {
