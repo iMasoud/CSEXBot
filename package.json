@@ -4,6 +4,17 @@
   "description": "CSEXBot is a telegram bot that delivers photos and documents to an specific chat id. Students use this bot to send their exercies to their teacher.",
   "main": "bot.js",
   "dependencies": {
+    "hooks-fixed": "^1.1.0",
+    "kareem": "^1.0.1",
+    "mongodb": "^2.0.47",
+    "mongoose": "~4.2.4",
+    "mpath": "^0.2.1",
+    "mpromise": "^0.5.5",
+    "mquery": "^1.6.3",
+    "ms": "^0.7.1",
+    "muri": "^1.1.0",
+    "regexp-clone": "0.0.1",
+    "sliced": "^1.0.1",
     "telegram-bot-api": "~0.3.2"
   },
   "devDependencies": {},

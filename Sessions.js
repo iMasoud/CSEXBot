@@ -2,6 +2,7 @@
  * Created by masoud on 10/27/15.
  */
 
+var sensitive = require('./sensitive'); //Sensitive Data: bot token and teacher_chat_id's chat id
 var Sessions = new Array;
 
 functions =
@@ -19,6 +20,11 @@ functions =
             name: "",
             lesson: ""
         };
+
+        if(id === sensitive.teacher)
+        {
+            Sessions[id].news = "";
+        }
 
         Sessions[id].files = new Array;
         Sessions[id].is_photo = new Array;
@@ -157,6 +163,31 @@ functions =
         if (functions.exists(id))
         {
             return Sessions[id].is_photo;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
+    set_news : function(id, news)
+    {
+        if(id === sensitive.teacher)
+        {
+            Sessions[id].news = news;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    },
+
+    get_news : function(id)
+    {
+        if(id === sensitive.teacher)
+        {
+            return Sessions[id].news;
         }
         else
         {

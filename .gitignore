@@ -28,3 +28,6 @@ node_modules
 
 # Sensitive data
 *sensitive*
+
+# Sublime Text 3 - Simple FTP Deploy Plugin - Config file
+simple-ftp-deploy.json

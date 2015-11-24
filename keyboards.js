@@ -15,10 +15,25 @@ var texts =
     ui_confirm: 'بله',
     ui_cancel:  'خیر',
 
+    ui_share_news: 'اطلاعیه',
+    ui_share_exercise:  'تمرین',
+
+    ui_admin_menu_share: 'ارتباط با دانشجویان',
+    ui_admin_menu_help: 'راهنما',
+
     main_menu :
     {
         keyboard: [
             ['ارسال تمرین'],
+            ['راهنما']
+        ],
+        one_time_keyboard: true
+    },
+
+    admin_main_menu :
+    {
+        keyboard: [
+            ['ارتباط با دانشجویان'],
             ['راهنما']
         ],
         one_time_keyboard: true
