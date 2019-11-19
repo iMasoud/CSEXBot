@@ -7,7 +7,7 @@
     "hooks-fixed": "^1.1.0",
     "kareem": "^1.0.1",
     "mongodb": "^2.0.47",
-    "mongoose": "~4.2.4",
+    "mongoose": "~5.7.10",
     "mpath": "^0.5.1",
     "mpromise": "^0.5.5",
     "mquery": "^1.6.3",
